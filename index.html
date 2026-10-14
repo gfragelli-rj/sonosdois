@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Só Nós Dois · Agosto 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: convite em papel frio; cada destino é um capítulo com sua cor própria (água de Bled, fachadas de Varenna, palha da Toscana, rocha das Dolomitas). */
+:root{
+  --paper:#F4F5F2; --card:#FFFFFF; --ink:#1D2A2E; --muted:#5D6B6E; --line:#D9DEDB; --gold:#9C7B3E;
+  --display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body:"Jost", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --paper:#141A1C; --card:#1C2427; --ink:#ECEFEC; --muted:#A3B0B1; --line:#2F3A3D; --gold:#D2B278; color-scheme:dark } }
+:root[data-theme="dark"]{ --paper:#141A1C; --card:#1C2427; --ink:#ECEFEC; --muted:#A3B0B1; --line:#2F3A3D; --gold:#D2B278; color-scheme:dark }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important;animation:none!important} }
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:400;font-size:17px;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration-color:var(--gold);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+.eyebrow{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* Hero */
+.hero{padding-block:clamp(48px,9vw,110px) 40px;text-align:center}
+.hero h1{font-size:clamp(3rem,9vw,6.5rem);font-style:italic;letter-spacing:-.01em}
+.hero .amp{color:var(--gold)}
+.hero p.lead{max-width:38rem;margin:22px auto 0;font-size:1.15rem;color:var(--muted);font-weight:300}
+.meta{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 28px;margin-top:28px}
+.meta span{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:48px}
+.strip a{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;border-radius:2px;text-decoration:none;color:#fff;max-width:100%}
+.strip img,.strip .ph{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.strip a:hover img{transform:scale(1.04)}
+.strip .lbl{position:absolute;inset:auto 0 0 0;padding:40px 14px 14px;background:linear-gradient(transparent,rgba(0,0,0,.6));font-family:var(--display);font-size:1.35rem;font-style:italic;text-align:left}
+@media (max-width:700px){ .strip{grid-template-columns:repeat(2,1fr)} }
+
+/* Letter */
+.letter{max-width:44rem;margin:30px auto 0;padding-block:36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:14px}
+.letter h2{font-size:1.9rem;font-style:italic}
+.letter p{margin:0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:8px}
+.facts div{min-width:0}
+.facts b{display:block;font-family:var(--display);font-size:1.1rem;font-weight:600}
+.facts small{color:var(--muted);font-size:.9rem;line-height:1.45;display:block}
+
+/* Chapters */
+.chapter{--c:#2F7F86;padding-block:clamp(56px,8vw,96px);border-bottom:1px solid var(--line)}
+.ch-head{display:grid;grid-template-columns:auto 1fr;gap:6px 22px;align-items:end}
+.ch-num{font-family:var(--display);font-size:clamp(3.5rem,8vw,6rem);line-height:.85;color:var(--c);font-style:italic}
+.ch-head h2{font-size:clamp(2.4rem,6vw,4rem)}
+.ch-head .eyebrow{grid-column:2;color:var(--c)}
+.tagline{font-size:1.2rem;font-weight:300;color:var(--muted);max-width:40rem;margin:18px 0 0}
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;margin-top:34px;height:clamp(320px,48vw,540px)}
+.gallery figure{margin:0;position:relative;overflow:hidden;min-width:0;background:color-mix(in srgb,var(--c) 18%,var(--paper))}
+.gallery figure:first-child{grid-row:span 2}
+.gallery figure:nth-child(2){grid-column:span 2}
+.gallery img,.gallery .ph{width:100%;height:100%;object-fit:cover}
+.gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;font-size:.78rem;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.55));letter-spacing:.02em}
+@media (max-width:700px){ .gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto;height:auto} .gallery figure{aspect-ratio:4/3} .gallery figure:first-child{grid-column:span 2;grid-row:auto} .gallery figure:nth-child(2){grid-column:auto} }
+.ph{display:flex;align-items:flex-end;padding:14px;color:#fff;font-family:var(--display);font-style:italic;font-size:1.05rem;background:linear-gradient(140deg,var(--c),color-mix(in srgb,var(--c) 45%,#000))}
+.more{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:12px;font-size:.85rem;color:var(--muted)}
+
+.cols{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,5vw,64px);margin-top:48px}
+.cols > *{min-width:0}
+@media (max-width:860px){ .cols{grid-template-columns:1fr} }
+.block + .block{margin-top:40px}
+.block h3{font-size:1.6rem;font-style:italic;margin-bottom:14px;display:flex;align-items:baseline;gap:12px}
+.block h3::before{content:"";width:22px;height:1px;background:var(--c);display:inline-block;transform:translateY(-6px)}
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.list li{padding-left:20px;position:relative}
+ul.list li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;border-radius:50%;border:1px solid var(--c)}
+
+.ceremony{background:var(--card);border:1px solid var(--line);padding:clamp(20px,3vw,32px);display:grid;gap:18px}
+.ceremony dl{margin:0;display:grid;gap:16px}
+.ceremony dt{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--c);font-weight:600}
+.ceremony dd{margin:4px 0 0}
+.ceremony .note{font-size:.92rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:14px}
+
+.stay{display:grid;gap:12px}
+.stay div{display:grid;gap:2px}
+.stay b{font-family:var(--display);font-weight:600;font-size:1.1rem}
+.stay span{color:var(--muted);font-size:.93rem}
+
+ol.days{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:d}
+ol.days li{counter-increment:d;display:grid;grid-template-columns:62px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+ol.days li::before{content:"Dia " counter(d);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+ol.days li.big{font-weight:500}
+ol.days li.big::before{color:var(--c);font-weight:600}
+
+.costs{margin-top:48px;background:var(--card);border:1px solid var(--line)}
+.costs-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:10px 24px;padding:22px clamp(18px,3vw,28px);border-bottom:1px solid var(--line)}
+.costs-head h3{font-size:1.6rem;font-style:italic}
+.costs-total{text-align:right}
+.costs-total b{font-family:var(--display);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:400;color:var(--c);font-variant-numeric:tabular-nums}
+.costs-total small{display:block;color:var(--muted);font-size:.8rem}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.93rem}
+th,td{text-align:left;padding:12px clamp(14px,2.5vw,28px);border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+td.n small{display:block;color:var(--muted);font-size:.78rem}
+td .why{display:block;color:var(--muted);font-size:.82rem;line-height:1.4;margin-top:2px}
+tr:last-child td{border-bottom:0}
+.srcs{margin-top:22px;font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+
+/* Compare */
+.compare{padding-block:clamp(56px,8vw,96px)}
+.compare h2{font-size:clamp(2.2rem,5vw,3.4rem);font-style:italic}
+.bars{margin-top:34px;display:grid;gap:22px}
+.bar{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}
+.bar .nm{font-family:var(--display);font-size:1.25rem;font-style:italic}
+.track{position:relative;height:34px;border-bottom:1px solid var(--line)}
+.range{position:absolute;top:8px;height:18px;border-radius:9px;background:var(--c)}
+.range span{position:absolute;top:-1px;font-size:.8rem;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink)}
+.range .lo{right:calc(100% + 8px)}
+.range .hi{left:calc(100% + 8px)}
+.axis{display:grid;grid-template-columns:150px 1fr;gap:16px;font-size:.72rem;color:var(--muted)}
+.axis div{position:relative;height:16px}
+.axis span{position:absolute;transform:translateX(-50%);font-variant-numeric:tabular-nums}
+@media (max-width:640px){ .bar,.axis{grid-template-columns:1fr} .axis > :first-child{display:none} .range .lo{right:auto;left:0;top:22px} .range .hi{left:auto;right:0;top:22px} .track{height:52px} }
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+.grid4 > div{background:var(--card);padding:20px;min-width:0}
+.grid4 h4{margin:0 0 10px;font-family:var(--display);font-weight:400;font-style:italic;font-size:1.35rem;color:var(--c)}
+.grid4 dl{margin:0;display:grid;gap:8px;font-size:.88rem}
+.grid4 dt{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.grid4 dd{margin:0}
+@media (max-width:900px){ .grid4{grid-template-columns:1fr 1fr} }
+@media (max-width:520px){ .grid4{grid-template-columns:1fr} }
+.fine{margin-top:40px;display:grid;gap:12px;max-width:48rem;font-size:.93rem;color:var(--muted)}
+.fine b{color:var(--ink);font-weight:500}
+footer{padding-block:48px 64px;text-align:center;font-family:var(--display);font-style:italic;font-size:1.6rem}
+footer small{display:block;font-family:var(--body);font-style:normal;font-size:.8rem;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+<header class="wrap hero">
+  <div class="eyebrow">Agosto de 2027 · 9 dias · uma cerimônia a dois</div>
+  <h1>Só nós dois</h1>
+  <p class="lead">Quatro lugares para trocarmos alianças, sem convidados, com uma pessoa celebrando nossos votos. Escolha comigo onde vai ser o nosso sim.</p>
+  <div class="meta"><span>Eslovênia</span><span>Lago di Como</span><span>Toscana</span><span>Dolomitas</span></div>
+  <nav class="strip" id="strip" aria-label="Destinos"></nav>
+  <section class="letter">
+    <h2>Como vai ser</h2>
+    <p>Uma cerimônia simbólica, sem igreja e sem papelada: só nós dois, uma celebrante, os votos que a gente escrever e as alianças. O casamento no papel a gente faz no cartório, aqui no Brasil, antes ou depois. Assim a viagem fica livre para ser só nossa.</p>
+    <div class="facts">
+      <div><b>Celebrante + fotógrafo</b><small>Contratados por planners locais (Wedding Lake Bled, Love Gracefully). Fotógrafo de 2 a 4 h registra tudo.</small></div>
+      <div><b>Nascer do sol</b><small>Em agosto é alta temporada. Cedo, os lugares ficam vazios, com luz suave e sem as tempestades de verão.</small></div>
+      <div><b>Reservar com 6 a 12 meses</b><small>Agosto de 2027 pede reservar planner, hotel e celebrante até o início de 2027.</small></div>
+    </div>
+  </section>
+</header>
+
+<main id="chapters"></main>
+
+<section class="wrap compare" id="comparar">
+  <div class="eyebrow">Lado a lado</div>
+  <h2>Quanto custa cada sonho</h2>
+  <p class="tagline" style="margin-top:12px">Estimativa total para nós dois em 9 dias: passagens, hotel, carro ou transporte e cerimônia. Valores em reais, com euro a R$ <span id="rate"></span>.</p>
+  <div class="bars" id="bars"></div>
+  <div class="axis" id="axis"><div></div><div></div></div>
+  <div class="grid4" id="grid4"></div>
+  <div class="fine">
+    <p><b>Sobre os valores.</b> São estimativas feitas em outubro de 2026, a partir dos preços publicados pelas planners (tabelas 2025–2026) e de faixas típicas de alta temporada. As passagens de agosto de 2027 ainda não estão à venda, então consulte as companhias quando abrirem (cerca de 11 meses antes). Não incluem alimentação, passeios e seguro viagem.</p>
+    <p><b>Câmbio.</b> Usamos R$ 6,00 por euro (PTAX recente em torno de R$ 5,95, mais spread de turismo). O IOF de compras no exterior não está incluído.</p>
+    <p><b>Documentos.</b> Brasileiros entram no espaço Schengen sem visto. A autorização eletrônica ETIAS (cerca de € 20) deve estar em vigor em 2027; confira antes de viajar.</p>
+    <p><b>Datas.</b> Evite o feriado de Ferragosto (15 de agosto) na Itália: tudo fica mais cheio e mais caro.</p>
+  </div>
+</section>
+
+<footer>Com amor, para você.<small>Fotos: Wikimedia Commons (CC BY-SA), por destino. Fontes de cada destino listadas no fim de cada capítulo.</small></footer>
+
+<script id="data" type="application/json">{"rate": 6.0, "destinations": [{"id": "bled", "name": "Lago Bled", "region": "Alpes Julianos · Eslovênia", "color": "#2F7F86", "tagline": "Uma ilha com igreja no meio de um lago de água verde-esmeralda e um castelo no penhasco.", "photos": [{"file": "Bled_Island_05.jpg", "caption": "A ilha de Bled vista do alto, lado de Osojnica"}, {"file": "Bled_Island_&_Bled_Castle_(1).jpg", "caption": "A igreja da ilha com o castelo no penhasco"}, {"file": "Bled_Overview.JPG", "caption": "Lago, ilha, castelo e cidade no verão"}, {"file": "Lake_Bohinj_with_a_church.jpg", "caption": "Lago Bohinj e a igreja de São João, a 30 min"}], "more": [{"label": "Portfólio Wedding Lake Bled", "url": "https://weddinglakebled.com/portfolio/"}, {"label": "Mais fotos no Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/Category:Lake_Bled"}], "highlights": ["A única ilha natural da Eslovênia, com uma igreja do século XVII no centro do lago.", "A pletna: barcos de madeira a remo que levam casais à ilha há cerca de 400 anos. O direito de remar vem de famílias locais licenciadas em 1740.", "Os 99 degraus da ilha: pela tradição, o noivo carrega a noiva até o topo e os dois tocam o sino dos desejos.", "O Castelo de Bled, citado desde 1004, com terraço sobre o lago e os Alpes.", "Mirantes de Ojstrica e Osojnica, a vista de cartão-postal, quase vazios ao nascer do sol.", "Kremšnita, o doce de creme típico de Bled, para brindar depois dos votos.", "Perto: garganta de Vintgar, Lago Bohinj, Parque Nacional Triglav e as termas do Grand Hotel Toplice."], "access": ["Voo GRU → Ljubljana (LJU) com uma conexão (Frankfurt, Munique, Zurique, Paris ou Istambul). Total de 15 a 20 h.", "LJU → Bled: cerca de 35 km, 30 min de carro, táxi ou transfer.", "Alternativas: Veneza (cerca de 2h30), Trieste (1h30 a 2h), Zagreb (2h), Klagenfurt (1h).", "Trem até Lesce-Bled (4 km do lago) e táxi. Ônibus de Ljubljana saem de hora em hora."], "ceremony": {"where": "Votos ao nascer do sol no mirante de Ojstrica (15 a 20 min de trilha) ou nos jardins de Vila Bled à beira do lago. Depois: pletna até a ilha, os 99 degraus e o sino, e fotos no terraço do castelo.", "when": "Nascer do sol (cerca de 6h) para ter o lago só para vocês e fugir das tempestades de fim de tarde. Segunda opção: golden hour, 19h a 20h.", "how": "Cerimônia simbólica com celebrante. A planner local (Karin, nascida em Bled) tem pacote de elopement para o casal, com roteiro, fornecedores e até 4 h de coordenação no dia.", "notes": "A igreja da ilha é católica; confirmar se aceita cerimônia não religiosa ou usar a ilha só como ritual e fotos. Agosto: 24 a 25 °C de dia, 13 a 15 °C à noite, chuvas fortes à tarde são comuns. Ter um plano B coberto."}, "stay": [{"name": "Vila Bled", "note": "Antiga residência de verão de Tito, jardins e píer próprio no lago."}, {"name": "Grand Hotel Toplice", "note": "Hotel histórico na orla, piscina termal e vista da ilha."}, {"name": "Hotel Triglav Bled", "note": "Boutique na colina, vista do lago e da ilha."}], "itinerary": ["Chegada a Ljubljana, transfer, volta ao lago (6 km) no fim do dia", "Pletna até a ilha, castelo, kremšnita. Encontro com a planner", "Garganta de Vintgar cedo e Lago Bohinj à tarde", "O dia do sim: votos ao nascer do sol em Ojstrica, fotos e jantar a dois", "Dia livre: piscina termal, SUP no lago", "Vale do Soča e passo de Vršič", "Ljubljana: centro antigo, castelo e cafés no rio", "Piran, cidade veneziana no Adriático, pôr do sol no mar", "Volta a Ljubljana e voo para casa"], "costs": {"flights_brl": [13000, 19000], "flights_note": "GRU–LJU ida e volta, 2 pessoas, com uma conexão", "hotel_eur": [1900, 3600], "hotel_note": "8 noites: 7 em Bled + 1 em Piran ou Ljubljana, € 240 a 450 por noite", "car_eur": [550, 900], "car_note": "Carro automático 9 dias + combustível e vinheta. Opcional: dá para fazer Bled sem carro", "ceremony_eur": [2900, 4300], "ceremony_note": "Pacote de elopement da planner (a partir de € 1.390) + celebrante + fotógrafo 2 a 3 h + buquê + pletna privada"}, "sources": [{"label": "Wedding Lake Bled · elopement", "url": "https://weddinglakebled.com/packages/lake-bled-elopement-planning/"}, {"label": "Wedding Lake Bled · como chegar", "url": "https://weddinglakebled.com/how-to-get-to-bled/"}, {"label": "Wedding Lake Bled · custos", "url": "https://weddinglakebled.com/cost/"}, {"label": "Ilha de Bled · casamentos", "url": "https://blejskiotok.si/en/experiences/weddings"}, {"label": "Castelo de Bled · casamentos", "url": "https://www.blejski-grad.si/en/other-services/weddings/"}]}, {"id": "varenna", "name": "Varenna", "region": "Lago di Como · Lombardia, Itália", "color": "#B5654A", "tagline": "Uma vila de casas coloridas sobre a água, jardins de villas históricas e barcos de madeira.", "photos": [{"file": "Varenna,_Lake_Como_1.jpg", "caption": "A orla colorida de Varenna"}, {"file": "Varenna_Vista_sul_Lago_di_Como_05.jpg", "caption": "O lago visto de Varenna"}, {"file": "Castillo_de_Vezio,_Varenna,_Italia,_2016-06-25,_DD_01.jpg", "caption": "Castello di Vezio, acima da vila"}, {"file": "Bellagio_and_Lake_Como_from_Menaggio-Varenna_ferry.jpg", "caption": "Bellagio vista do ferry, a 15 min"}], "more": [{"label": "Love Gracefully · Lake Como", "url": "https://www.love-gracefully.com/wedding-packages/italy/lake-como/"}, {"label": "Mais fotos no Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/Category:Varenna"}], "highlights": ["Villa Monastero: antigo mosteiro com um jardim botânico estreito e longo à beira do lago, com loggia e um pequeno templo neoclássico.", "Villa Cipressi: jardins em terraços que descem até a água. Dá para se hospedar e casar no mesmo lugar.", "Passeggiata degli Innamorati, o passeio dos namorados, uma passarela sobre a água ligando o porto à vila.", "Castello di Vezio, castelo medieval com vista para os três braços do lago.", "Barco privado de madeira pelo lago, com Bellagio e Villa del Balbianello vistos da água.", "Fiumelatte, o rio mais curto da Itália (cerca de 250 m), de água branca como leite.", "Aperitivo ao pôr do sol no pequeno porto antigo."], "access": ["Voo GRU → Milão Malpensa (MXP). A LATAM costuma operar direto, cerca de 12 h; confirmar para 2027.", "Malpensa Express até Milano Centrale (cerca de 50 min) e trem regional direto até Varenna-Esino (cerca de 1 h, uns € 7).", "Ferries para Bellagio e Menaggio em 15 min, cerca de € 4,60.", "Não precisa de carro: estrada estreita e pouco estacionamento. Um transfer privado do aeroporto é a opção mais confortável."], "ceremony": {"where": "Opções: (1) loggia ou templo da Villa Monastero, exclusivo por 1 h; (2) a bordo de um barco de madeira privado; (3) gratuito, à beira do lago na Passeggiata degli Innamorati ao amanhecer.", "when": "Cedo (7h30 a 9h30) para passarelas vazias, ou golden hour (18h30 a 20h). Evitar a semana de Ferragosto (15 de agosto), o pico de turistas.", "how": "Love Gracefully monta a cerimônia simbólica com celebrante em inglês, roteiro personalizado e certificado simbólico. O pacote Gold inclui 3 h de fotos e 1 h de barco com capitão e prosecco.", "notes": "Villa Monastero cobra cerca de € 3.500 por 1 h exclusiva (tabela 2025) e fica aberta ao público. Agosto: 24 a 28 °C, tempestades de tarde são possíveis. Perguntar por celebrante que fale português."}, "stay": [{"name": "Hotel Royal Victoria", "note": "Prédio do século XIX no lago, jardim, piscina e spa."}, {"name": "Hotel Villa Cipressi", "note": "Quartos dentro do jardim botânico histórico."}, {"name": "Albergo Milano", "note": "Pequeno e romântico, terraço sobre o lago."}], "itinerary": ["Voo noturno saindo de GRU", "Chegada a Milão, trem até Varenna, passeio dos namorados à noite", "Descanso, jardins da Villa Monastero, Fiumelatte, encontro com a celebrante", "O dia do sim: votos, barco privado pelo lago e jantar a dois", "Manhã livre, subida ao Castello di Vezio", "Dia de ferry: Bellagio, Villa Melzi, Villa Carlotta, Menaggio", "Trem até Tirano e Bernina Express até St. Moritz", "Milão: Duomo, Galleria, Última Ceia", "Voo para casa saindo de Malpensa"], "costs": {"flights_brl": [11000, 17000], "flights_note": "GRU–MXP ida e volta, 2 pessoas, voo direto ou uma conexão", "hotel_eur": [2600, 4800], "hotel_note": "8 noites: 7 em Varenna + 1 em Milão, € 280 a 550 por noite (agosto é alta temporada)", "car_eur": [300, 500], "car_note": "Sem carro: transfer do aeroporto, trens, ferries. Não compensa alugar", "ceremony_eur": [2000, 4500], "ceremony_note": "Love Gracefully Silver (€ 1.945) a Gold (€ 3.280) + extra de barco. Villa Monastero soma cerca de € 3.500"}, "sources": [{"label": "Love Gracefully · Lake Como", "url": "https://www.love-gracefully.com/wedding-packages/italy/lake-como/"}, {"label": "Villa Monastero · cerimônias", "url": "https://prenotazioni.villamonastero.eu/en/cerimonie-fino-30-persone"}, {"label": "Trenord · Milano–Varenna", "url": "https://trenord.it/en/routes-and-timetables/most-searched-lines/milano-central-station-varenna-esino"}, {"label": "Italian Lakes Wedding · Varenna", "url": "https://www.italianlakeswedding.com/blog/lake-como-weddings/destination-weddings-in-varenna/"}]}, {"id": "orcia", "name": "Val d'Orcia", "region": "Toscana · Itália", "color": "#8A7A3C", "tagline": "Colinas douradas, ciprestes enfileirados e vilas renascentistas. Patrimônio da UNESCO.", "photos": [{"file": "Cappella_Madonna_di_Vitaleta-.jpg", "caption": "Capela de Vitaleta entre ciprestes"}, {"file": "I_cipressi_della_Val_D'Orcia.jpg", "caption": "Os ciprestes de San Quirico d'Orcia"}, {"file": "In_Val_d'Orcia.jpg", "caption": "Fardos de palha no verão, a paisagem real de agosto"}, {"file": "BagnoVignoniPiazzaDelleSorgenti2.jpg", "caption": "Bagno Vignoni: a praça é uma piscina termal"}], "more": [{"label": "Love Gracefully · Tuscany", "url": "https://www.love-gracefully.com/wedding-packages/italy/tuscany/"}, {"label": "Mais fotos no Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/Category:Val_d%27Orcia"}], "highlights": ["Paisagem Patrimônio Mundial da UNESCO desde 2004, cenário de Gladiador e O Paciente Inglês.", "Capela de Vitaleta, sozinha numa colina, num caminho de terra entre San Quirico e Pienza.", "O bosque de ciprestes de San Quirico, uma das vistas mais fotografadas da Itália.", "Pienza, a cidade ideal do Renascimento, com as ruelas Via dell'Amore e Via del Bacio.", "Bagno Vignoni e Bagni San Filippo, águas termais para relaxar depois do calor.", "Vinhos Brunello em Montalcino e Vino Nobile em Montepulciano.", "Monticchiello, vila murada e tranquila, um dos cenários de cerimônia da Love Gracefully."], "access": ["Voo GRU → Roma Fiumicino (FCO), direto pela ITA ou LATAM, 10h30 a 12h.", "FCO → Pienza: cerca de 210 km, 2h15 a 2h45 de carro. De Florença: cerca de 2 h.", "Uma ideia: chegar por Roma e voltar por Florença.", "Carro é essencial. Atenção às ZTL (zonas de tráfego restrito) em Florença, Siena e Pienza, que geram multa automática."], "ceremony": {"where": "Terraço de uma villa ou agriturismo com vista para o vale (mais privacidade e sombra), uma estrada de ciprestes em área pública, ou um vinhedo em Montalcino.", "when": "Nascer do sol (6h15 a 6h40) ou golden hour (18h30 a 20h). Agosto é muito quente: 30 a 38 °C.", "how": "Love Gracefully organiza a cerimônia simbólica com celebrante profissional e votos personalizados. O pacote Basic já inclui 3 h de fotos, transporte do casal e buquê.", "notes": "Em agosto o trigo já foi colhido: os campos ficam cor de palha, com fardos redondos. Ciprestes, oliveiras e vinhedos continuam verdes. A capela de Vitaleta é propriedade privada; pedir autorização antes."}, "stay": [{"name": "ADLER Spa Resort Thermae", "note": "Bagno Vignoni, piscinas termais, meia pensão."}, {"name": "Monteverdi Tuscany", "note": "Vilarejo medieval restaurado a 786 m, mais fresco, spa e alta gastronomia."}, {"name": "Agriturismo com vista", "note": "Opção mais em conta e muito charmosa na região de Pienza."}], "itinerary": ["Chegada a Roma, retirada do carro, viagem até Val d'Orcia", "Descanso, termas de Bagno Vignoni, pôr do sol nos ciprestes", "Pienza e Monticchiello, visita aos locais da cerimônia", "O dia do sim: votos ao nascer do sol ou na golden hour e jantar a dois", "Montalcino: degustação de Brunello e abadia de Sant'Antimo", "Montepulciano e Bagni San Filippo", "Siena (o Palio é em 16 de agosto) e seguir para Florença", "Florença: Duomo, Uffizi, pôr do sol na Piazzale Michelangelo", "Voo para casa saindo de Florença ou Roma"], "costs": {"flights_brl": [11000, 17000], "flights_note": "GRU–FCO ida e volta, 2 pessoas, voo direto", "hotel_eur": [2200, 5600], "hotel_note": "8 noites: 6 em Val d'Orcia + 2 em Florença. Agriturismo cerca de € 250, resorts como ADLER ou Monteverdi € 700+", "car_eur": [650, 1050], "car_note": "Carro automático 9 dias + combustível e pedágios. Reservar cedo", "ceremony_eur": [2900, 5100], "ceremony_note": "Love Gracefully Basic (€ 2.870) a Silver (€ 5.060, com vídeo e beleza). Gold com villa privada: € 7.150"}, "sources": [{"label": "Love Gracefully · Tuscany", "url": "https://www.love-gracefully.com/wedding-packages/italy/tuscany/"}, {"label": "Val d'Orcia · Wikipedia", "url": "https://en.wikipedia.org/wiki/Val_d%27Orcia"}, {"label": "Monteverdi Tuscany · FAQ", "url": "https://monteverdituscany.com/faqs/"}, {"label": "Voos diretos GRU–FCO", "url": "https://www.directflights.com/GRU-FCO"}]}, {"id": "funes", "name": "Val di Funes", "region": "Dolomitas · Tirol do Sul, Itália", "color": "#7A5C8C", "tagline": "Uma igrejinha num prado verde, aos pés dos picos serrilhados de Odle.", "photos": [{"file": "Santa_Maddalena,_Funes,_chiesa_di_Santa_Maddalena_01.jpg", "caption": "Santa Maddalena e os picos de Odle"}, {"file": "Church_of_St._John_in_Ranui.jpg", "caption": "San Giovanni in Ranui, a capela de 1744"}, {"file": "Puez-Geisler-Odle_msu_2018_-7996.jpg", "caption": "O maciço de Odle no Parque Puez-Odle"}, {"file": "Sankt_Johann_in_Ranui_im_Villnößtal.jpg", "caption": "Ranui no vale de Villnöß"}], "more": [{"label": "Love Gracefully · Dolomites", "url": "https://www.love-gracefully.com/wedding-packages/italy/dolomites/"}, {"label": "Mais fotos no Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/Category:Villn%C3%B6%C3%9F"}], "highlights": ["A igreja de Santa Maddalena com os picos de Odle atrás, uma das vistas mais famosas das Dolomitas.", "San Giovanni in Ranui, capela barroca de 1744 sozinha num prado.", "Trilha Adolf Munkel, cerca de 9 km aos pés das paredes de Odle.", "Refúgios Geisleralm e Gschnagenhardt Alm para almoçar com os picos sobre a cabeça.", "Parque Natural Puez-Odle, Patrimônio da UNESCO, numa vila focada em turismo sem carro.", "Seceda e Alpe di Siusi a 45-60 min de carro.", "O clima mais fresco das quatro opções em agosto: 15 a 25 °C no vale."], "access": ["Voo GRU → Munique (MUC) direto pela Lufthansa (3x por semana no verão europeu). Alternativa: Milão ou Veneza.", "Munique → Val di Funes: cerca de 3 a 3h30 de carro pelo passo do Brenner. Innsbruck: 1h30 a 2 h. Verona ou Veneza: 2h30 a 3 h.", "De trem: até Bressanone/Brixen ou Chiusa/Klausen e ônibus até Santa Maddalena.", "Desde 2026 a estrada até a igreja de Santa Maddalena é restrita a moradores e hóspedes de hotéis da vila. Ficar hospedado ali resolve."], "ceremony": {"where": "Prado próximo à trilha Adolf Munkel ou aos refúgios (30 a 60 min a pé, máxima privacidade), mirantes de Santa Maddalena ou a crista de Seceda.", "when": "Nascer do sol (6h a 6h30), com a melhor luz e sem tempestades. Em agosto, trovoadas à tarde são comuns: decidir 24 a 48 h antes e ter um dia reserva.", "how": "Love Gracefully monta cerimônia simbólica com celebrante em inglês, roteiro personalizado e certificado. O pacote Gold inclui 4 h de fotos e carro com motorista.", "notes": "Ranui é propriedade privada com catraca (cerca de € 4) e sem drones. Drones são proibidos no parque Puez-Odle desde 2023. Levar casaco: no alto faz 5 a 10 °C menos."}, "stay": [{"name": "Hotel Tyrol", "note": "Santa Maddalena, o mais bem avaliado, spa e meia pensão excelente."}, {"name": "Hotel Fines", "note": "Moderno, varandas panorâmicas e pequeno spa."}, {"name": "Geisler Living", "note": "Apartamentos só para adultos."}], "itinerary": ["Chegada a Munique e viagem até Val di Funes", "Descanso, caminhada leve até Santa Maddalena e Ranui na golden hour", "Trilha Adolf Munkel até Geisleralm, escolha do local", "O dia do sim: votos ao nascer do sol nos prados e almoço num refúgio", "Dia reserva para o tempo, ou spa e Bressanone", "Seceda pelo teleférico de Ortisei", "Alpe di Siusi ao nascer do sol", "Lago di Braies cedinho", "Bolzano e voo para casa"], "costs": {"flights_brl": [12000, 18000], "flights_note": "GRU–MUC ida e volta, 2 pessoas, voo direto", "hotel_eur": [2400, 4000], "hotel_note": "8 noites com meia pensão (café e jantar), € 300 a 500 por noite", "car_eur": [600, 1000], "car_note": "Carro 9 dias + combustível, pedágios e vinheta da Áustria. Muito recomendado", "ceremony_eur": [1800, 3100], "ceremony_note": "Love Gracefully Silver (€ 1.660) a Gold (€ 2.810) + taxa de local remoto (€ 100 a 260)"}, "sources": [{"label": "Love Gracefully · Dolomites", "url": "https://www.love-gracefully.com/wedding-packages/italy/dolomites/"}, {"label": "Euronews · acesso a Santa Maddalena", "url": "https://www.euronews.com/2026/01/27/residents-have-reached-breaking-point-italian-valley-restricts-access-to-famed-photo-spot"}, {"label": "Trilha Adolf Munkel", "url": "https://www.odlesdolomites.com/en/blog/the-adolf-munkel-trail/"}, {"label": "Regras de drones no Tirol do Sul", "url": "https://www.south-tirol.com/useful-information/drones"}]}]}</script>
+<script>
+(function(){
+  const D = JSON.parse(document.getElementById('data').textContent);
+  const R = D.rate;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const img = f => 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(f) + '?width=1600';
+  const brl = n => 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+  const eur = n => '€ ' + Math.round(n).toLocaleString('pt-BR');
+  window.__ph = function(el){ const d=document.createElement('div'); d.className='ph'; d.setAttribute('role','img'); d.setAttribute('aria-label', el.alt); el.replaceWith(d); };
+  const pic = (f, alt) => `<img src="${img(f)}" alt="${esc(alt)}" loading="lazy" referrerpolicy="no-referrer" onerror="__ph(this)">`;
+  document.getElementById('rate').textContent = R.toFixed(2).replace('.', ',');
+
+  // totals
+  D.destinations.forEach(d => {
+    const c = d.costs;
+    d.tot = [0,1].map(i => c.flights_brl[i] + (c.hotel_eur[i] + c.car_eur[i] + c.ceremony_eur[i]) * R);
+  });
+
+  document.getElementById('strip').innerHTML = D.destinations.map(d =>
+    `<a href="#${d.id}" style="--c:${d.color}">${pic(d.photos[0].file, d.name)}<span class="lbl">${esc(d.name)}</span></a>`).join('');
+
+  const roman = ['I','II','III','IV'];
+  document.getElementById('chapters').innerHTML = D.destinations.map((d, i) => {
+    const c = d.costs;
+    const row = (label, why, lo, hi, isEur) => `<tr><td>${label}<span class="why">${esc(why)}</span></td>
+      <td class="n">${brl(isEur?lo*R:lo)}${isEur?`<small>${eur(lo)}</small>`:''}</td>
+      <td class="n">${brl(isEur?hi*R:hi)}${isEur?`<small>${eur(hi)}</small>`:''}</td></tr>`;
+    const transportLabel = d.id === 'varenna' ? 'Transporte local' : 'Aluguel de carro';
+    return `<section class="chapter" id="${d.id}" style="--c:${d.color}"><div class="wrap">
+      <div class="ch-head"><div class="ch-num">${roman[i]}</div><h2>${esc(d.name)}</h2><div class="eyebrow">${esc(d.region)}</div></div>
+      <p class="tagline">${esc(d.tagline)}</p>
+      <div class="gallery">${d.photos.map(p => `<figure>${pic(p.file, p.caption)}<figcaption>${esc(p.caption)}</figcaption></figure>`).join('')}</div>
+      <div class="more">${d.more.map(m => `<a href="${m.url}" target="_blank" rel="noopener">${esc(m.label)} ↗</a>`).join('')}</div>
+      <div class="cols">
+        <div>
+          <div class="block"><h3>Por que é especial</h3><ul class="list">${d.highlights.map(h=>`<li>${esc(h)}</li>`).join('')}</ul></div>
+          <div class="block"><h3>Como chegar</h3><ul class="list">${d.access.map(h=>`<li>${esc(h)}</li>`).join('')}</ul></div>
+        </div>
+        <div>
+          <div class="block"><h3>A cerimônia</h3>
+            <div class="ceremony"><dl>
+              <div><dt>Onde</dt><dd>${esc(d.ceremony.where)}</dd></div>
+              <div><dt>Quando</dt><dd>${esc(d.ceremony.when)}</dd></div>
+              <div><dt>Como</dt><dd>${esc(d.ceremony.how)}</dd></div>
+            </dl><div class="note">${esc(d.ceremony.notes)}</div></div>
+          </div>
+          <div class="block"><h3>Onde ficar</h3><div class="stay">${d.stay.map(s=>`<div><b>${esc(s.name)}</b><span>${esc(s.note)}</span></div>`).join('')}</div></div>
+        </div>
+      </div>
+      <div class="block" style="margin-top:44px"><h3>Nove dias</h3>
+        <ol class="days">${d.itinerary.map(t=>`<li class="${/dia do sim/i.test(t)?'big':''}">${esc(t)}</li>`).join('')}</ol>
+      </div>
+      <div class="costs">
+        <div class="costs-head"><h3>Estimativa de custos</h3>
+          <div class="costs-total"><b>${brl(d.tot[0])} – ${brl(d.tot[1])}</b><small>total para 2 pessoas, 9 dias</small></div></div>
+        <div class="tbl"><table>
+          <thead><tr><th>Item</th><th style="text-align:right">Mínimo</th><th style="text-align:right">Máximo</th></tr></thead>
+          <tbody>
+            ${row('Passagens', c.flights_note, c.flights_brl[0], c.flights_brl[1], false)}
+            ${row('Hotel', c.hotel_note, c.hotel_eur[0], c.hotel_eur[1], true)}
+            ${row(transportLabel, c.car_note, c.car_eur[0], c.car_eur[1], true)}
+            ${row('Cerimônia', c.ceremony_note, c.ceremony_eur[0], c.ceremony_eur[1], true)}
+          </tbody></table></div>
+      </div>
+      <div class="srcs"><span>Fontes:</span>${d.sources.map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join('')}</div>
+    </div></section>`;
+  }).join('');
+
+  // compare bars
+  const max = Math.ceil(Math.max(...D.destinations.map(d=>d.tot[1]))/10000)*10000 + 10000;
+  const min = 30000;
+  const pct = v => ((v-min)/(max-min)*100).toFixed(2)+'%';
+  const k = v => 'R$ ' + Math.round(v/1000) + ' mil';
+  document.getElementById('bars').innerHTML = D.destinations.map(d =>
+    `<div class="bar" style="--c:${d.color}"><div class="nm">${esc(d.name)}</div>
+      <div class="track"><div class="range" style="left:${pct(d.tot[0])};width:calc(${pct(d.tot[1])} - ${pct(d.tot[0])})"><span class="lo">${k(d.tot[0])}</span><span class="hi">${k(d.tot[1])}</span></div></div></div>`).join('');
+  let ticks=''; for(let v=min; v<=max; v+=10000){ ticks += `<span style="left:${pct(v)}">${Math.round(v/1000)}k</span>`; }
+  document.getElementById('axis').children[1].innerHTML = ticks;
+
+  const facts = {
+    bled:  {clima:'24–25 °C, chuvas à tarde', gente:'Cheio a partir do fim da manhã', log:'Uma conexão; carro opcional', vibe:'Conto de fadas alpino'},
+    varenna:{clima:'24–28 °C, ameno no lago', gente:'Muito cheio em agosto', log:'Voo direto possível; sem carro', vibe:'Romance clássico italiano'},
+    orcia: {clima:'30–38 °C, muito quente', gente:'Tranquilo fora das vilas', log:'Voo direto; carro essencial', vibe:'Campo, vinho e luz dourada'},
+    funes: {clima:'15–25 °C, o mais fresco', gente:'Cheio nos mirantes famosos', log:'Voo direto a Munique; carro', vibe:'Montanha e aventura'}
+  };
+  document.getElementById('grid4').innerHTML = D.destinations.map(d => { const f=facts[d.id]; return `<div style="--c:${d.color}"><h4>${esc(d.name)}</h4><dl>
+    <div><dt>Clima em agosto</dt><dd>${f.clima}</dd></div><div><dt>Movimento</dt><dd>${f.gente}</dd></div>
+    <div><dt>Logística</dt><dd>${f.log}</dd></div><div><dt>Clima da cerimônia</dt><dd>${f.vibe}</dd></div>
+    <div><dt>Total estimado</dt><dd>${brl(d.tot[0])} a ${brl(d.tot[1])}</dd></div></dl></div>`; }).join('');
+})();
+</script>
+</body>
+</html>
